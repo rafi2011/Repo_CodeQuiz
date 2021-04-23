@@ -2,7 +2,7 @@
 var currentQuestionIndex = 0;
 var time = questions.length * 15;
 var timerId;
-
+console.log(questions)
 // variables to reference DOM elements
 var questionsEl = document.getElementById("questions");
 var timerEl = document.getElementById("time");
@@ -11,19 +11,26 @@ var submitBtn = document.getElementById("submit");
 var startBtn = document.getElementById("start");
 var initialsEl = document.getElementById("initials");
 var feedbackEl = document.getElementById("feedback");
-
+console.log(questionsEl)
 // sound effects
-var sfxRight = new Audio("assets/sfx/correct.wav");
-var sfxWrong = new Audio("assets/sfx/incorrect.wav");
+//var sfxRight = new Audio("assets/sfx/correct.wav");
+//var sfxWrong = new Audio("assets/sfx/incorrect.wav");
 
 function startQuiz() {
   // hide start screen
- 
+  var startScreen = document.getElementById("start-screen");
+  console.log(startScreen)
+  startScreen.style.display = "None"
+  
+  
   // un-hide questions section
+  questionsEl.classList.remove("hide")
 
   // start timer
+  timerId = setInterval(clockTick, 1000)
 
   // show starting time
+  timerEl.textContent = time
 
   getQuestion();
 }
@@ -78,7 +85,11 @@ function quizEnd() {
 
 function clockTick() {
   // update time
-
+  time = time - 1
+  timerEl.textContent = time
+  if (time <= 0) {
+    clearInterval(timerId)
+  }
   // check if user ran out of time
 }
 
