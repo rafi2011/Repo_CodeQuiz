@@ -2,7 +2,7 @@
 var currentQuestionIndex = 0;
 var time = questions.length * 15;
 var timerId;
-console.log(questions)
+//console.log(questions)
 // variables to reference DOM elements
 var questionsEl = document.getElementById("questions");
 var timerEl = document.getElementById("time");
@@ -11,8 +11,9 @@ var submitBtn = document.getElementById("submit");
 var startBtn = document.getElementById("start");
 var initialsEl = document.getElementById("initials");
 var feedbackEl = document.getElementById("feedback");
-console.log(questionsEl)
-// sound effects
+var questionTitle = document.getElementById("question-title");
+//console.log(questionsEl)
+// sound effect
 //var sfxRight = new Audio("assets/sfx/correct.wav");
 //var sfxWrong = new Audio("assets/sfx/incorrect.wav");
 
@@ -37,13 +38,25 @@ function startQuiz() {
 
 function getQuestion() {
   // get current question object from array
-
+    console.log(questions[0]);
+    var question = questions[0]
+    console.log(question.title);
+    console.log(question.choices[0]);
+    console.log(question.answer);
   // update title with current question
 
+questionTitle.textContent = question.title
   // clear out any old question choices
+choicesEl.innerHTML = ""
 
   // loop over choices
-
+  for (var i = 0; i < question.choices.length; i++) {
+    var button = document.createElement("button")
+    console.log(button);
+    button.textContent = question.choices[i]
+    choicesEl.appendChild(button)
+  }
+  
     // create new button for each choice
 
     // attach click event listener to each choice
